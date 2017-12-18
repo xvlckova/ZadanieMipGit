@@ -42,41 +42,22 @@ bool moze(int **a, int riadok, int stlpec, int hodnota)
     return true;
 }
 
-int kolkoMoze(int **a, int r, int s)
-{
-//kolko moznych hodnot x mozeme ulozit na policko a[r][s] ?
-    int pocet = 0;
-    for (int x = 1; x <= 9; x++)
-        {
-            if (moze(a, r, s, x))
-            {
-                pocet++;
-            }
-        }
-    return pocet;
-}
-
 void najdiVolne(int **a, int &r, int &s)
 {
-//najdi volne policko na ploche. Vyberame take, ktore ma najmenej moznych hodnot, ktore sa na neho daju polozit.
-    int min = 10;
-    r = s = -1;
+//najdi volne policko na ploche
     for (int i = 0; i < 9; i++)
         {
             for (int j = 0; j < 9; j++)
             {
                 if (a[i][j] == 0)
                 {
-                    int pocet = kolkoMoze(a, i, j);
-                    if (pocet < min)
-                    {
-                        min = pocet;
-                        r = i;
-                        s = j;
-                    }
+                    r = i;
+                    s = j;
+                    return;
                 }
             }
         }
+    r = s = -1;
     return;
 }
 
